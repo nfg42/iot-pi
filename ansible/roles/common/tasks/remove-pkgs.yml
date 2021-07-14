@@ -1,0 +1,13 @@
+---
+
+- name: Remove unneed packages
+  apt:
+    name:
+      - friendly-recovery 
+      - apport
+      - landscape-common
+      - popularity-contest
+    purge: yes
+    state: absent
+
+#motd-news-config
