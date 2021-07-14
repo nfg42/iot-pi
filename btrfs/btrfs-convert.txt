@@ -1,0 +1,21 @@
+sudo apt-get install btrfs-progs
+
+sudo umount /dev/sdd2
+sudo btrfs-convert /dev/sdd2
+sudo mount -o compress=zstd /dev/sdd2 /mnt
+cd /mnt
+sudo btrfs sub del ext2_saved
+sudo btrfs fi def -czstd -r -v /mnt
+sudo btrfs balance start -m /mnt
+
+sudo btrfs subvolume snapshot /mnt /mnt/@
+find /mnt -mindepth 1 ! -regex '/mnt/@\(/.*\)?' -delete
+sudo sudo btrfs subvolume create @home
+sudo btrfs subvolume create @varlog
+sudo rsync -avhPx  /mnt/@/home /mnt/@home
+sudo rsync -avhPx  /mnt/@/var/log /mnt/@varlog
+sudo rm -r /mnt/@/home/*
+sudo rm -r /mnt/@/var/log/*
+
+#sudo sed -E -i 's|(.*)ext4.*|\1btrfs defaults,ssd,noatime,nodiratime,compress=zstd,subvol=@ 0 0|' /mnt/@/etc/fstab
+#sudo nano /mnt/@/etc/fstab

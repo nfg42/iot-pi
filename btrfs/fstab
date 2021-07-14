@@ -1,0 +1,6 @@
+#LABEL=writable	/	 ext4	defaults	0 0
+LABEL=writable	/	 btrfs defaults,ssd,noatime,nodiratime,compress=zstd,subvol=@ 0 0
+LABEL=system-boot       /boot/firmware  vfat    defaults        0       1
+
+LABEL=writable	/home	 btrfs defaults,ssd,noatime,nodiratime,compress=zstd,subvol=@home 0 0
+LABEL=writable	/var/log	 btrfs defaults,ssd,noatime,nodiratime,compress=zstd,subvol=@varlog 0 0
