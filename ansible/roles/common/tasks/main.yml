@@ -14,9 +14,6 @@
 #  become: yes
 #  become_method: sudo
 
-#- name: Remove unneed packages
-#  include: remove-pkgs.yaml
-
 - name: Remove unneed packages
   apt:
     name:
@@ -26,18 +23,6 @@
       - popularity-contest
     purge: yes
     state: absent
-
-#- name: Remove snapd
-#  include: remove-snap.yaml
-- name: Remove default snaps
-  community.general.snap:
-    name: 
-    name:
-      - lxd
-      - core18
-      - snapd
-    state: absent
-    when: '"snapd" in ansible_facts.packages'
 
 - name: Remove snapd package
   apt:
