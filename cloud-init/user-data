@@ -1,0 +1,31 @@
+#cloud-config
+# Set your hostname here, the manage_etc_hosts will update the hosts file entries as well
+hostname: iot
+# Enable password authentication with the SSH daemon
+ssh_pwauth: true
+# Create groups
+groups:
+- docker
+# You could modify this for your own user information
+users:
+  - name: ladmin
+    primary-group: users
+    shell: /bin/bash
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: users,docker,adm,dialout,audio,plugdev,netdev,video
+    ssh-import-id:
+      - gh:nfg42
+    lock_passwd: false
+
+chpasswd:
+  expire: false
+  list:
+  - ladmin:password
+
+# Install additional packages on first boot
+packages:
+- ansible
+
+  ## Run arbitrary commands at rc.local like time
+runcmd:
+  - 'sudo ansible-pull -U https://github.com/nfg42/iot-pi.git -i ansible/inventory.yml ansible/provision.yml > /var/log/ansible-provision.run 2>&1'
