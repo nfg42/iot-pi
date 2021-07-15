@@ -25,6 +25,7 @@ chpasswd:
 # Install additional packages on first boot
 packages:
 - ansible
+- sshpass
 
   ## Run arbitrary commands at rc.local like time
 runcmd:

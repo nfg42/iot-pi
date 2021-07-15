@@ -5,4 +5,4 @@
 #dns_server: '192.168.1.1'
 #dns_search_suffix: 'lab.layer8sys.com'
 
-time_zone: America/New_York
+time_zone: America/Chicago
