@@ -1,0 +1,11 @@
+---
+# defaults for rpi-boot-config
+
+# Path to the Raspberry Pi boot configuration file
+rpi_boot_config_file: /boot/firmware/usercfg.txt
+
+boot_config: {}
+#  gpu_mem: 64
+
+boot_config_lines: []
+#  - "gpu_mem=64"
