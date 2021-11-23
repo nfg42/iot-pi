@@ -1,0 +1,10 @@
+LABEL=writable	/	 btrfs defaults,ssd,noatime,nodiratime,compress=zstd 0 0
+LABEL=system-boot       /boot/firmware  vfat    defaults        0       1
+
+LABEL=writable	/home	 btrfs defaults,ssd,noatime,nodiratime,compress=zstd,subvol=@home 0 0
+LABEL=writable	/var/log	 btrfs defaults,ssd,noatime,nodiratime,compress=zstd,subvol=@varlog 0 0
+LABEL=writable	/var/cache/apt	 btrfs defaults,ssd,noatime,nodiratime,compress=zstd,subvol=@aptcache 0 0
+LABEL=writable	/.snapshots	 btrfs defaults,ssd,noatime,nodiratime,compress=zstd,subvol=@snapshot 0 0
+LABEL=writable	/var/lib/docker	 btrfs defaults,ssd,noatime,nodiratime,compress=zstd,subvol=@docker 0 0
+LABEL=writable	/data	 btrfs defaults,ssd,noatime,nodiratime,compress=zstd,subvol=@data 0 0
+LABEL=writable	/config	 btrfs defaults,ssd,noatime,nodiratime,compress=zstd,subvol=@config 0 0
